@@ -1,0 +1,84 @@
+@use "./base/variables" as *;
+@use "./base/reset";
+@use "./base/fonts";
+@use "./base/mixins" as *;
+
+@import "../../icons/style";
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  background-image: url("../../images/pretty.jpg");
+  background-color: #cccccc;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#grid {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 600px;
+  .card {
+    background-color: transparent;
+    padding: 10px;
+    width: 150px;
+    height: 200px;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  }
+
+  /* This container is needed to position the front and back side */
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flipped .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  /* Position the front and back side */
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  }
+
+  /* Style the front side (fallback if image is missing) */
+  .flip-card-front {
+    background-image: url("../../images/connectwork.png");
+    background-color: #cccccc;
+    color: black;
+  }
+
+  /* Style the back side */
+  .flip-card-back {
+    background-image: url("../../images/background.jpg");
+    background-color: #cccccc;
+    background-position: center;
+    color: white;
+    position: relative;
+    transform: rotateY(180deg);
+    .centericon {
+      position: absolute;
+      margin: 0;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+  }
+}
